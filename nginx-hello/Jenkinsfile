@@ -1,0 +1,11 @@
+node {
+    checkout scm
+
+    docker.withRegistry('https://quay.io/repository/', 'quay.io') {
+
+        def customImage = docker.build("gke-test")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
+}
