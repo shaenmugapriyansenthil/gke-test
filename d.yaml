@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gks-deploy
+  namespace: default
+  labels:
+    app: gks-deploy
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gks-deploy
+  template:
+    metadata:
+      labels:
+        app: gks-deploy
+    spec:
+      containers:
+      - name: gks
+        image: quay.io/shaenmugapriyan_senthil/gke-test
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: gks-service
